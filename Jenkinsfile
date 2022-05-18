@@ -6,7 +6,7 @@ pipeline {
             steps {
 
                 sh 'make check || true'
-                sh './mvnw test'
+                sh 'mvn test'
             }
               post {
                 always {
