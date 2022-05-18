@@ -1,4 +1,4 @@
-import entities.NotFound;
+import entities.ResponseErrors;
 import entities.User;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -9,6 +9,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
+import static entities.ResponseErrors.repoNotFoundError;
 import static entities.Users.EXISTENT_USER;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -20,7 +21,7 @@ public class GetUsersTest extends BaseTest {
     public static Object[][] testData() {
         return new Object[][]{
                 {usersUrl + EXISTENT_USER.getName(), User.builder().build(), User.class, HttpStatus.SC_OK},
-                {usersUrl + "non" + EXISTENT_USER.getName(), NotFound.builder().build(), NotFound.class, HttpStatus.SC_NOT_FOUND}
+                {usersUrl + "non" + EXISTENT_USER.getName(), repoNotFoundError(), ResponseErrors.class, HttpStatus.SC_NOT_FOUND}
         };
     }
 
@@ -57,11 +58,11 @@ public class GetUsersTest extends BaseTest {
     @Ignore("Replaced by parametrised tests")
     @SneakyThrows
     public void userNotFoundTest() {
-        val expectedResponse = NotFound.builder().build();
+        val expectedResponse = repoNotFoundError();
 
         HttpUriRequest getRequest = RequestUtils.createGetRequest(usersUrl + "non" + EXISTENT_USER.getName());
         response = client.execute(getRequest);
-        val actualResponse = ResponseUtils.parseResponse(response, NotFound.class);
+        val actualResponse = ResponseUtils.parseResponse(response, ResponseErrors.class);
 
         assertThat(response.getStatusLine().getStatusCode()).isEqualTo(HttpStatus.SC_NOT_FOUND);
         assertThat(actualResponse).usingRecursiveComparison()
