@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import static entities.Users.EXISTENT_USER;
+
 @Builder
 @Getter
 @AllArgsConstructor
@@ -16,7 +18,7 @@ public class Repo {
     @Builder.Default
     Boolean publicity = false;
     @Builder.Default
-    String name = "fiomay";
+    String name = EXISTENT_USER.getName();
     @Builder.Default
     User owner = User.builder().build();
 }

@@ -1,5 +1,6 @@
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -27,8 +28,14 @@ public class RequestUtils {
 
     @SneakyThrows
     public static HttpUriRequest createGetRequest(String endpoint) {
-
         return new HttpGet(baseUrl + endpoint);
+    }
+
+    @SneakyThrows
+    public static HttpUriRequest createDeleteRequest(String endpoint, String authorizationToken) {
+        var request = new HttpDelete(baseUrl + endpoint);
+        request.setHeader(AUTHORIZATION, "token " + authorizationToken);
+        return request;
     }
 
 }
