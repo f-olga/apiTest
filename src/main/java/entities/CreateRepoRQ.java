@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class CreateRepoRQ {
     @Builder.Default
-    String name = "deleteMei";
+    String name = "TestRepo";
 
     @SneakyThrows
     public static String convertRQToString(CreateRepoRQ request) {
