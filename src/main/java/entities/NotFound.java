@@ -1,0 +1,15 @@
+package entities;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+public class NotFound {
+    @Builder.Default
+    String login = "Not Found";
+}
