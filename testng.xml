@@ -1,13 +1,10 @@
 <suite name="AllTests">
-    <test name="GetUser">
-        <classes>
-            <class name="GetUsersTest"/>
-        </classes>
-    </test>
-
     <test name="RepositoryTests">
         <classes>
             <class name="RepoTests"/>
+        </classes>
+        <classes>
+            <class name="GetUsersTest"/>
         </classes>
     </test>
 </suite>

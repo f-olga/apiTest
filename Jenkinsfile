@@ -4,8 +4,6 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-
-                sh 'make check || true'
                 sh 'mvn test'
             }
               post {
