@@ -6,11 +6,19 @@ pipeline {
             steps {
                 sh 'mvn clean test'
             }
-              post {
-                always {
-                  step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
-                }
-              }
+        }
+        stage('reports') {
+            steps {
+            script {
+                    allure([
+                            includeProperties: false,
+                            jdk: '',
+                            properties: [],
+                            reportBuildPolicy: 'ALWAYS',
+                            results: [[path: 'target/allure-results']]
+                    ])
+            }
+            }
         }
     }
 }
