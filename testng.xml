@@ -2,8 +2,6 @@
     <test name="RepositoryTests">
         <classes>
             <class name="RepoTests"/>
-        </classes>
-        <classes>
             <class name="GetUsersTest"/>
         </classes>
     </test>

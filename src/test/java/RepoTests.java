@@ -1,6 +1,7 @@
 import entities.CreateRepoRQ;
 import entities.Repo;
 import entities.ResponseErrors;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -106,12 +107,14 @@ public class RepoTests extends BaseTest {
     }
 
     @SneakyThrows
+    @Step("Create repository")
     private CloseableHttpResponse createRepo(CreateRepoRQ payload) {
         HttpUriRequest postRequest = RequestUtils.createPostRequest(CreateRepoRQ.convertRQToString(payload), addRepo, Credentials.getToken());
         return client.execute(postRequest);
     }
 
     @SneakyThrows
+    @Step("Delete repository")
     private CloseableHttpResponse deleteRepo(String user, String repoName) {
         HttpUriRequest deleteRequest = RequestUtils.createDeleteRequest(String.format("/repos/%s/%s", user, repoName), Credentials.getToken());
         return client.execute(deleteRequest);
