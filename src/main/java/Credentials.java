@@ -1,5 +1,5 @@
 public class Credentials {
-    private final static String token = "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";
+    private final static String token = "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";
 
     protected static String getToken() {
         return token;
